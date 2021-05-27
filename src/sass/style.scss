@@ -1,0 +1,89 @@
+@use 'base/reset.scss';
+@use 'base/typography.scss';
+@use 'abstracts/prism.scss';
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600&family=Sora:wght@300&display=swap');
+
+$darkBlack: hsl(0, 0%, 4%);
+$mediumBlack: hsl(0, 0%, 5%);
+$lightBlack: hsl(0, 0%, 6%);
+$basicGray: hsl(0, 0%, 13%);
+$headerBlue: hsl(210, 100%, 52%);
+$codeBackground: hsl(0, 0%, 12%);
+$basicWhite: hsl(0, 0%, 100%);
+$mainRed: hsl(3, 100%, 61%);
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background-color: $darkBlack;
+  color: $basicWhite;
+}
+
+.header {
+  background-color: $basicGray;
+  padding: 20px;
+  text-align: center;
+  color: $basicWhite;
+
+  h1 {
+    font-size: 24px;
+  }
+}
+
+.examples {
+  &__unit {
+    padding: 40px;
+    &:nth-child(even) {
+      background-color: $mediumBlack;
+    }
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    .description {
+      font-size: 24px;
+      padding-right: 20px;
+      h1 {
+        font-size: 24px;
+
+        &.wrong {
+          text-decoration: underline $mainRed;
+        }
+      }
+      h2 {
+        font-size: 18px;
+        margin-top: 10px;
+      }
+      p {
+        font-size: 15px;
+        margin-top: 20px;
+        font-family: 'Sora', sans-serif;
+
+        a {
+          color: $headerBlue;
+        }
+
+        ul {
+          padding-left: 20px;
+        }
+
+        li + * {
+          margin-top: 20px;
+        }
+      }
+    }
+    .code {
+      pre {
+        background-color: $codeBackground;
+      }
+      p {
+        font-family: 'Sora', sans-serif;
+        font-size: 14px;
+        margin-left: 1em;
+      }
+      .usage {
+        background-color: $basicGray;
+        padding: 1em;
+        margin: 0.5em 0;
+      }
+    }
+  }
+}
