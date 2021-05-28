@@ -7,15 +7,19 @@ $darkBlack: hsl(0, 0%, 4%);
 $mediumBlack: hsl(0, 0%, 5%);
 $lightBlack: hsl(0, 0%, 6%);
 $basicGray: hsl(0, 0%, 13%);
-$headerBlue: hsl(210, 100%, 52%);
+$headerBlue: hsl(210, 95%, 59%);
 $codeBackground: hsl(0, 0%, 12%);
 $basicWhite: hsl(0, 0%, 100%);
+$darkWhite: hsl(0, 0%, 88%);
 $mainRed: hsl(3, 100%, 61%);
+$darkViolet: hsla(233, 31%, 5%, 0.8);
 
 body {
-  font-family: 'Manrope', sans-serif;
+  // font-family: 'Manrope', sans-serif;
+  font-family: system-ui;
   background-color: $darkBlack;
   color: $basicWhite;
+  height: 100vh;
 }
 
 .header {
@@ -23,67 +27,158 @@ body {
   padding: 20px;
   text-align: center;
   color: $basicWhite;
+  height: 10vh;
 
   h1 {
     font-size: 24px;
   }
 }
 
-.examples {
-  &__unit {
-    padding: 40px;
-    &:nth-child(even) {
-      background-color: $mediumBlack;
+.page {
+  display: grid;
+  grid-template-columns: 18% 82%;
+  max-height: 90vh;
+  overflow-y: hidden;
+  background-color: $mediumBlack;
+  .nav {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    overflow-y: auto;
+    border-right: 1px solid $basicGray;
+
+    a {
+      text-decoration: none;
+      color: $darkWhite;
+      padding: 8px 12px;
+      border-radius: 10px;
+      &.active-link {
+        color: $headerBlue;
+        background-color: $codeBackground;
+        &::after {
+          content: '';
+          display: inline-block;
+          margin-left: 10px;
+          width: 0;
+          height: 0;
+          border-top: 6px solid transparent;
+          border-bottom: 6px solid transparent;
+          border-left: 10px solid $headerBlue;
+        }
+      }
     }
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: auto;
-    .description {
-      font-size: 24px;
-      padding-right: 20px;
-      h1 {
-        font-size: 24px;
+  }
+  .content {
+    overflow-y: auto;
+    height: 90vh;
+    padding: 20px;
 
-        &.wrong {
-          text-decoration: underline $mainRed;
-        }
-      }
-      h2 {
-        font-size: 18px;
-        margin-top: 10px;
-      }
-      p {
-        font-size: 15px;
-        margin-top: 20px;
-        font-family: 'Sora', sans-serif;
-
-        a {
-          color: $headerBlue;
-        }
-
-        ul {
-          padding-left: 20px;
-        }
-
-        li + * {
+    .samples {
+      .sample {
+        border: 1px solid $basicGray;
+        padding: 20px;
+        border-radius: 10px;
+        & + * {
           margin-top: 20px;
         }
-      }
-    }
-    .code {
-      pre {
-        background-color: $codeBackground;
-      }
-      & > p {
-        font-family: 'Sora', sans-serif;
-        font-size: 14px;
-        margin-left: 1em;
-      }
-      .usage {
-        background-color: $basicGray;
-        padding: 1em;
-        margin: 0.5em 0;
+
+        .description {
+          h1 {
+            font-size: 24px;
+
+            &.wrong::after {
+              content: '!!!';
+              color: $mainRed;
+              margin-left: 4px;
+            }
+          }
+
+          h2 {
+            font-size: 20px;
+            font-weight: 400;
+          }
+
+          ol {
+            li + * {
+              margin-top: 8px;
+            }
+            p {
+              font-weight: 400;
+            }
+          }
+        }
+
+        .code {
+          & > p {
+            margin-left: 10px;
+          }
+
+          .usage {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px dotted $darkWhite;
+          }
+        }
       }
     }
   }
 }
+
+// .examples {
+//   &__unit {
+//     padding: 40px;
+//     &:nth-child(even) {
+//       background-color: $mediumBlack;
+//     }
+//     display: grid;
+//     grid-template-columns: 50% 50%;
+//     grid-template-rows: auto;
+//     .description {
+//       font-size: 24px;
+//       padding-right: 20px;
+//       h1 {
+//         font-size: 24px;
+
+//         &.wrong {
+//           text-decoration: underline $mainRed;
+//         }
+//       }
+//       h2 {
+//         font-size: 18px;
+//         margin-top: 10px;
+//       }
+//       p {
+//         font-size: 15px;
+//         margin-top: 20px;
+//         font-family: 'Sora', sans-serif;
+
+//         a {
+//           color: $headerBlue;
+//         }
+
+//         ul {
+//           padding-left: 20px;
+//         }
+
+//         li + * {
+//           margin-top: 20px;
+//         }
+//       }
+//     }
+//     .code {
+//       pre {
+//         background-color: $codeBackground;
+//       }
+//       & > p {
+//         font-family: 'Sora', sans-serif;
+//         font-size: 14px;
+//         margin-left: 1em;
+//       }
+//       .usage {
+//         background-color: $basicGray;
+//         padding: 1em;
+//         margin: 0.5em 0;
+//       }
+//     }
+//   }
+// }

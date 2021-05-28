@@ -4,7 +4,8 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable prettier/prettier */
 
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
+import Prism from 'prismjs';
 
 import * as ReactFC from './ReactFC';
 import * as ConventionalProps from './ConventionalProps';
@@ -134,4 +135,47 @@ const samples = [
   },
 ];
 
-export default samples;
+function Samples() {
+  useEffect(() => {
+    Prism.highlightAll();
+  }, []);
+
+  return (
+    <section className="samples">
+      {samples.map(
+        ({ title, subtitle, args, isWrong, code, usages, components }) => (
+          <article className="sample" key={title}>
+            <section className="description">
+              <h1 className={isWrong ? 'wrong' : undefined}>{title}</h1>
+              <h2>{subtitle}</h2>
+              <ol>
+                {args.map((arg, idx) => (
+                  <li key={idx}>{arg}</li>
+                ))}
+              </ol>
+            </section>
+            <section className="code">
+              <pre>
+                <code className="language-javascript">{code}</code>
+              </pre>
+              {usages && <p>Usage</p>}
+              {usages.map((usage, idx) => (
+                <pre key={idx}>
+                  <code className="language-javascript">{usage}</code>
+                </pre>
+              ))}
+              {components.length && <p>Result</p>}
+              {components.map((component, idx) => (
+                <div className="usage" key={idx}>
+                  {component}
+                </div>
+              ))}
+            </section>
+          </article>
+        )
+      )}
+    </section>
+  );
+}
+
+export default Samples;

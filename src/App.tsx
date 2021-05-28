@@ -1,48 +1,45 @@
-import { useEffect } from 'react';
-import Prism from 'prismjs';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from 'react-router-dom';
+import Components from './samples';
+import Hooks from './hooks';
 import './sass/style.scss';
-// import samples from './samples';
-import UseStateComponent from './samples/hooks/useStateComponent';
-import UseEffectComponent from './samples/hooks/useEffectComponent';
-import UseContextComponent from './samples/hooks/useContextComponent';
-import UseReducerComponent from './samples/hooks/useReducerComponent';
-import UseRefComponent from './samples/hooks/useRefComponent';
-import CustomHookComponent from './samples/hooks/customHookComponent';
-import TestComponent from './samples/hooks/EventMoreReactComponent';
 
 export default function App() {
-  useEffect(() => {
-    Prism.highlightAll();
-  }, []);
-
   return (
     <div className="App">
       <header className="header">
-        <h1>React Typescript Hooks Stuff</h1>
+        <h1>React Typescript Cool Stuff</h1>
       </header>
 
-      <main>
-        <h1>useState</h1>
-        <UseStateComponent />
-
-        <h1>useEffect</h1>
-        <UseEffectComponent />
-
-        <h1>useContext</h1>
-        <UseContextComponent />
-
-        <h1>useReducer</h1>
-        <UseReducerComponent />
-
-        <h1>useRef</h1>
-        <UseRefComponent />
-
-        <h1>useFetchData</h1>
-        <CustomHookComponent />
-
-        <h1>Even more React stuff</h1>
-        <TestComponent />
-      </main>
+      <section className="page">
+        <Router>
+          <nav className="nav">
+            <NavLink exact to="/" activeClassName="active-link">
+              Components
+            </NavLink>
+            <NavLink to="/hooks" activeClassName="active-link">
+              Hooks
+            </NavLink>
+            <NavLink to="/state" activeClassName="active-link">
+              State Management
+            </NavLink>
+          </nav>
+          <main className="content">
+            <Switch>
+              <Route exact path="/">
+                <Components />
+              </Route>
+              <Route path="/hooks">
+                <Hooks />
+              </Route>
+            </Switch>
+          </main>
+        </Router>
+      </section>
     </div>
   );
 }
