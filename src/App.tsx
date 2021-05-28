@@ -8,6 +8,7 @@ import UseContextComponent from './samples/hooks/useContextComponent';
 import UseReducerComponent from './samples/hooks/useReducerComponent';
 import UseRefComponent from './samples/hooks/useRefComponent';
 import CustomHookComponent from './samples/hooks/customHookComponent';
+import TestComponent from './samples/hooks/EventMoreReactComponent';
 
 export default function App() {
   useEffect(() => {
@@ -38,6 +39,9 @@ export default function App() {
 
         <h1>useFetchData</h1>
         <CustomHookComponent />
+
+        <h1>Even more React stuff</h1>
+        <TestComponent />
       </main>
     </div>
   );

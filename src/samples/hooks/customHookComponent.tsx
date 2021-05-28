@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 interface User {
   id: number;
@@ -22,18 +22,20 @@ export interface People {
   };
 }
 
-function useFetchData(url: string): {
-  dataX: Users | null;
+function useFetchData<DataType, ResponseType extends { data: DataType }>(
+  url: string
+): {
+  data: DataType | null;
   done: boolean;
 } {
-  const [dataX, setDataX] = useState<Users | null>(null);
+  const [usersData, setUsersData] = useState<DataType | null>(null);
   const [done, setDone] = useState(false);
 
   useEffect(() => {
     fetch(url)
       .then((resp) => resp.json())
-      .then(({ data }: People) => {
-        setDataX(data);
+      .then(({ data: respData }: ResponseType) => {
+        setUsersData(respData);
         setDone(true);
       })
       .catch((err) => {
@@ -42,20 +44,34 @@ function useFetchData(url: string): {
   }, [url]);
 
   return {
-    dataX,
+    data: usersData,
     done,
   };
 }
 
 function CustomHookComponent() {
-  const { dataX, done } = useFetchData('https://reqres.in/api/users?page=2');
+  const { data, done } = useFetchData<Users, People>(
+    'https://reqres.in/api/users?page=2'
+  );
+  const usersWithS = useMemo(
+    () => (data || []).filter((user) => user.last_name.includes('s')),
+    [data]
+  );
 
   return (
     <div>
       <p>{done ? 'done' : 'nope'}</p>
       <ul>
-        {dataX &&
-          dataX.map(({ id, first_name, last_name }) => (
+        {data &&
+          data.map(({ id, first_name, last_name }) => (
+            <li key={id}>
+              {first_name} {last_name}
+            </li>
+          ))}
+      </ul>
+      <ul>
+        {usersWithS &&
+          usersWithS.map(({ id, first_name, last_name }) => (
             <li key={id}>
               {first_name} {last_name}
             </li>
