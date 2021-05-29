@@ -1,4 +1,11 @@
 import ReactDOM from 'react-dom';
 import App from './App';
+import { ColorModeScript } from '@chakra-ui/react';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <>
+    <ColorModeScript />
+    <App />
+  </>,
+  document.getElementById('root')
+);

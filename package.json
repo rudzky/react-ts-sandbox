@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/rudzky/webpack-react-typescript#readme",
   "dependencies": {
+    "@chakra-ui/react": "^1.6.3",
     "highlight.js": "^10.7.2",
     "prismjs": "^1.23.0",
     "react": "^17.0.2",

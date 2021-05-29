@@ -7,6 +7,7 @@ import {
 import Components from './samples';
 import Hooks from './hooks';
 import './sass/style.scss';
+import { StateManagement } from './state-management/StateManagement';
 
 export default function App() {
   return (
@@ -35,6 +36,9 @@ export default function App() {
               </Route>
               <Route path="/hooks">
                 <Hooks />
+              </Route>
+              <Route path="/state">
+                <StateManagement />
               </Route>
             </Switch>
           </main>
