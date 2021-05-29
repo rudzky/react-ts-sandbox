@@ -31,12 +31,36 @@ export const addTodo = (todos: Todo[], text: string): Todo[] => [
   },
 ];
 
-// Native React Implementation
-// It's all about what is going to be returned
-export const useTodos = (initial: Todo[]) => useState<Todo[]>(initial);
-export type UseTodosType = ReturnType<typeof useTodos>;
-export type TodosType = UseTodosType[0];
-export type SetTodosType = UseTodosType[1];
+// Custom Hook
+
+const useTodos = (initial: Todo[]) => {
+  const [todos, setTodos] = useState<Todo[]>(initial);
+  const [newTodo, setNewTodo] = useState('');
+
+  return {
+    todos,
+    newTodo,
+    setNewTodo,
+    addTodo() {
+      setTodos((tl) => addTodo(tl, newTodo));
+      setNewTodo('');
+    },
+    updateTodo(id: number, text: string) {
+      setTodos((tl) => updateTodo(tl, id, text));
+    },
+    toggleTodo(id: number) {
+      setTodos((tl) => toggleTodo(tl, id));
+    },
+    removeTodo(id: number) {
+      setTodos((tl) => removeTodo(tl, id));
+    },
+    load(todos: Todo[]) {
+      setTodos(todos);
+    },
+  };
+};
+
+type UseTodosType = ReturnType<typeof useTodos>;
 
 const TodoContext = createContext<UseTodosType | null>(null);
 

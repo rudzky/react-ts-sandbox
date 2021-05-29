@@ -1,10 +1,8 @@
-import * as React from 'react';
 import { Button, Input, Grid } from '@chakra-ui/react';
-import { useTodosContext, addTodo } from '../store';
+import { useTodosContext } from '../store';
 
 function TodoAdd() {
-  const [newTodo, setNewTodo] = React.useState('');
-  const [todos, setTodos] = useTodosContext();
+  const { newTodo, setNewTodo, addTodo } = useTodosContext();
 
   return (
     <Grid pt={2} templateColumns="5fr 1fr" columnGap="3">
@@ -15,8 +13,7 @@ function TodoAdd() {
       />
       <Button
         onClick={() => {
-          setTodos(addTodo(todos, newTodo));
-          setNewTodo('');
+          addTodo();
         }}
       >
         Add Todo

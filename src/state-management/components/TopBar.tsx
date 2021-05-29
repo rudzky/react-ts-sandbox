@@ -7,13 +7,13 @@ JSON source: https://raw.githubusercontent.com/jherr/todos-four-ways/master/data
 */
 
 function TopBar() {
-  const [, setTodos] = useTodosContext();
+  const { load } = useTodosContext();
   const onLoad = () => {
     fetch(
       'https://raw.githubusercontent.com/jherr/todos-four-ways/master/data/todos.json'
     )
       .then((resp) => resp.json())
-      .then((data) => setTodos(data));
+      .then((data) => load(data));
   };
 
   return (
