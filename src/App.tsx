@@ -8,6 +8,7 @@ import Components from './samples';
 import Hooks from './hooks';
 import './sass/style.scss';
 import { StateManagement } from './state-management/StateManagement';
+import { ReduxManagement } from './state-management-redux/ReduxManagement';
 
 export default function App() {
   return (
@@ -28,6 +29,9 @@ export default function App() {
             <NavLink to="/state" activeClassName="active-link">
               State Management
             </NavLink>
+            <NavLink to="/state-redux" activeClassName="active-link">
+              Redux Management
+            </NavLink>
           </nav>
           <main className="content">
             <Switch>
@@ -39,6 +43,9 @@ export default function App() {
               </Route>
               <Route path="/state">
                 <StateManagement />
+              </Route>
+              <Route path="/state-redux">
+                <ReduxManagement />
               </Route>
             </Switch>
           </main>
