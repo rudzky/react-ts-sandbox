@@ -4,11 +4,13 @@ import {
   Route,
   NavLink,
 } from 'react-router-dom';
+
+import './sass/style.scss';
 import Components from './samples';
 import Hooks from './hooks';
-import './sass/style.scss';
 import { StateManagement } from './state-management/StateManagement';
 import { ReduxManagement } from './state-management-redux/ReduxManagement';
+// import Vanilla from './vanilla-typescript';
 
 export default function App() {
   return (
@@ -32,6 +34,9 @@ export default function App() {
             <NavLink to="/state-redux" activeClassName="active-link">
               Redux Management
             </NavLink>
+            {/* <NavLink to="/vanilla" activeClassName="active-link">
+              Vanilla Typescript
+            </NavLink> */}
           </nav>
           <main className="content">
             <Switch>
@@ -47,6 +52,9 @@ export default function App() {
               <Route path="/state-redux">
                 <ReduxManagement />
               </Route>
+              {/* <Route path="/vanilla">
+                <Vanilla />
+              </Route> */}
             </Switch>
           </main>
         </Router>
